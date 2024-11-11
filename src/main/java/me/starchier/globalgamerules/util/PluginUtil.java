@@ -18,9 +18,21 @@ public class PluginUtil {
     }
     private List<String> keys = null;
     private FileConfiguration config = null;
+
+    /*
     public String getVersion() {
         return plugin.getServer().getClass().getPackage().getName().replace(".", ",").split(",")[3];
     }
+*/
+    public String getVersion() {
+        String[] splitPackage = plugin.getServer().getClass().getPackage().getName().replace(".", ",").split(",");
+        if (splitPackage.length > 3) {
+            return splitPackage[3];
+        }
+        return "Unknown";
+     }
+
+    
     public FileConfiguration getConfig() {
         if(config==null) {
             plugin.reloadConfig();
